@@ -8,11 +8,13 @@ Additional information can be found at [CloudFoundry.org](http://docs.cloudfound
 
 ## Usage
 
-This buildpack will be used if there is a `requirements.txt` or `setup.py` file in the root directory of your project.
+This buildpack will be used if there is a `requirements.txt` or `setup.py` file in the root directory of your project. Since we are using this to deploy to Bluemix you must [specify a more recent ubuntu stack](https://developer.ibm.com/bluemix/2015/07/29/cloud-foundry-php-buildpack-doesnt-support-lucid64/) than the default one (bluemix runtimes default to Lucid64).
 
 ```bash
-cf push my_app -b https://github.com/cloudfoundry/buildpack-python.git
+cf cf push my_app -b https://github.com/innovateonline/python-buildpack.git -s cflinuxfs2
 ```
+
+Note that in our workflow my_app is always specified in the `manifest.yml`. Only production environments require app name overrides.
 
 ## Disconnected environments
 To use this buildpack on Cloud Foundry, where the Cloud Foundry instance limits some or all internet activity, please read the [Disconnected Environments documentation](https://github.com/cf-buildpacks/buildpack-packager/blob/master/doc/disconnected_environments.md).
